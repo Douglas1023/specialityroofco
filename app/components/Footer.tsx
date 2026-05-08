@@ -1,15 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import { BRAND, COLORS } from "../data/brand";
-import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer
       style={{
-        background: COLORS.dark,
-        color: `${COLORS.bg}99`,
-        padding: "60px clamp(16px, 3vw, 48px) 32px",
+        background: COLORS.bg,
+        color: COLORS.fg,
+        padding: "72px clamp(16px, 3vw, 48px) 36px",
+        borderTop: `1px solid ${COLORS.border}`,
       }}
     >
       <div
@@ -22,13 +23,23 @@ export default function Footer() {
           gap: 28,
         }}
       >
-        <Logo variant="white" width={160} />
+        <Image
+          src="/logo-orange.png"
+          alt="Specialty Roofing"
+          width={1500}
+          height={680}
+          style={{
+            width: "min(80%, 320px)",
+            height: "auto",
+            display: "block",
+          }}
+        />
         <p
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "1.05rem",
+            fontSize: "1.1rem",
             fontStyle: "italic",
-            color: COLORS.bg,
+            color: COLORS.fg,
             textAlign: "center",
           }}
         >
@@ -37,27 +48,44 @@ export default function Footer() {
         <div
           style={{
             display: "flex",
-            gap: 24,
+            gap: 28,
             flexWrap: "wrap",
             justifyContent: "center",
             fontFamily: "var(--font-body)",
             fontSize: "0.78rem",
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
           }}
         >
-          <a href="#services" style={{ color: `${COLORS.bg}aa` }}>Services</a>
-          <a href="#about" style={{ color: `${COLORS.bg}aa` }}>About</a>
-          <a href="#projects" style={{ color: `${COLORS.bg}aa` }}>Projects</a>
-          <a href="#reviews" style={{ color: `${COLORS.bg}aa` }}>Reviews</a>
-          <a href="#contact" style={{ color: `${COLORS.bg}aa` }}>Contact</a>
+          <a href="#services" style={{ color: COLORS.fg }}>Services</a>
+          <a href="#about" style={{ color: COLORS.fg }}>About</a>
+          <a href="#projects" style={{ color: COLORS.fg }}>Projects</a>
+          <a href="#reviews" style={{ color: COLORS.fg }}>Reviews</a>
+          <a href="#contact" style={{ color: COLORS.fg }}>Contact</a>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            gap: 18,
+            flexWrap: "wrap",
+            justifyContent: "center",
+            fontFamily: "var(--font-body)",
+            fontSize: "0.85rem",
+            color: COLORS.fgMuted,
+          }}
+        >
+          <a href={BRAND.phoneHref}>{BRAND.phone}</a>
+          <span style={{ color: `${COLORS.fgMuted}55` }}>·</span>
+          <a href={BRAND.emailHref}>{BRAND.email}</a>
+          <span style={{ color: `${COLORS.fgMuted}55` }}>·</span>
+          <span>{BRAND.address}</span>
         </div>
         <div
           style={{
             width: 60,
             height: 1,
-            background: `${COLORS.bg}22`,
+            background: COLORS.border,
           }}
         />
         <p
@@ -66,7 +94,7 @@ export default function Footer() {
             fontSize: "0.62rem",
             letterSpacing: "0.32em",
             textTransform: "uppercase",
-            color: `${COLORS.bg}55`,
+            color: COLORS.fgMuted,
             textAlign: "center",
           }}
         >

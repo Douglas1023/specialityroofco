@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dde9f3"/>
+      <stop offset="100%" stop-color="#cfe0ee"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a4633"/>
+      <stop offset="100%" stop-color="#3a2c1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#sky)"/>
+  <circle cx="660" cy="180" r="120" fill="#f3d8a8" opacity="0.55"/>
+  <rect x="0" y="780" width="800" height="220" fill="url(#ground)"/>
+
+  <!-- Figure 1 -->
+  <g transform="translate(290 460)">
+    <ellipse cx="0" cy="-220" rx="60" ry="14" fill="#f4ecdc"/>
+    <path d="M -50 -220 Q 0 -270 50 -220 Z" fill="#f4ecdc"/>
+    <rect x="-26" y="-225" width="52" height="10" fill="#e08544"/>
+    <ellipse cx="0" cy="-160" rx="38" ry="48" fill="#d8a679"/>
+    <path d="M -78 -100 L -78 130 L 78 130 L 78 -100 Q 38 -114 0 -114 Q -38 -114 -78 -100 Z" fill="#a8c5d8"/>
+    <path d="M -16 -106 L 0 -78 L 16 -106 Z" fill="#d8a679"/>
+    <rect x="-78" y="132" width="156" height="18" fill="#5a3a25"/>
+    <rect x="-12" y="132" width="20" height="18" fill="#e08544"/>
+    <path d="M -78 152 L -82 360 L -16 360 L -2 158 L 2 158 L 16 360 L 82 360 L 78 152 Z" fill="#f4ecdc"/>
+    <rect x="-82" y="354" width="68" height="32" rx="6" fill="#3a2a1e"/>
+    <rect x="14" y="354" width="68" height="32" rx="6" fill="#3a2a1e"/>
+  </g>
+
+  <!-- Figure 2 -->
+  <g transform="translate(510 470)">
+    <ellipse cx="0" cy="-220" rx="60" ry="14" fill="#f4ecdc"/>
+    <path d="M -50 -220 Q 0 -270 50 -220 Z" fill="#f4ecdc"/>
+    <rect x="-26" y="-225" width="52" height="10" fill="#e08544"/>
+    <ellipse cx="0" cy="-160" rx="38" ry="48" fill="#caa07c"/>
+    <path d="M -78 -100 L -78 130 L 78 130 L 78 -100 Q 38 -114 0 -114 Q -38 -114 -78 -100 Z" fill="#a4c0d4"/>
+    <path d="M -16 -106 L 0 -78 L 16 -106 Z" fill="#caa07c"/>
+    <rect x="-78" y="132" width="156" height="18" fill="#5a3a25"/>
+    <rect x="-12" y="132" width="20" height="18" fill="#e08544"/>
+    <path d="M -78 152 L -82 360 L -16 360 L -2 158 L 2 158 L 16 360 L 82 360 L 78 152 Z" fill="#f4ecdc"/>
+    <rect x="-82" y="354" width="68" height="32" rx="6" fill="#3a2a1e"/>
+    <rect x="14" y="354" width="68" height="32" rx="6" fill="#3a2a1e"/>
+  </g>
+
+  <!-- Placeholder watermark -->
+  <text x="400" y="960" text-anchor="middle"
+        font-family="Inter, sans-serif" font-size="20" font-weight="600"
+        fill="#1e3a5f" opacity="0.4" letter-spacing="6">PLACEHOLDER · REPLACE WITH /founders.jpg</text>
+</svg>

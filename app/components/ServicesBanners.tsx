@@ -1,208 +1,209 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { COLORS, SERVICES, type Service } from "../data/brand";
+import Image from "next/image";
+import { COLORS } from "../data/brand";
 
-function useIsMobile() {
-  const [m, setM] = useState(false);
-  useEffect(() => {
-    const c = () => setM(window.innerWidth < 900);
-    c();
-    window.addEventListener("resize", c);
-    return () => window.removeEventListener("resize", c);
-  }, []);
-  return m;
-}
+/**
+ * Services section photo.
+ * To swap: save your photo to /public/ (e.g. /public/services.jpg) and
+ * change SERVICES_PHOTO to the new path. Recommended: ~3:2 landscape,
+ * 1400x950+ for retina.
+ */
+const SERVICES_PHOTO = "/services-roofer.svg"; // placeholder until you drop in your real photo
 
-function ServiceBanner({ service, index }: { service: Service; index: number }) {
-  const [hovered, setHovered] = useState(false);
-  const isMobile = useIsMobile();
-  const isEven = index % 2 === 0;
-
-  const isDark = service.bgColor === COLORS.dark;
-  const bg = service.bgColor;
-  const fg = service.fgColor;
-  const muted = isDark ? `${COLORS.bg}99` : `${COLORS.fg}99`;
-  const accent = isDark ? COLORS.accent : COLORS.accent;
-  const linkBorder = isDark ? `${COLORS.bg}66` : `${COLORS.fg}55`;
-
-  return (
-    <article
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        position: "relative",
-        background: bg,
-        minHeight: isMobile ? "auto" : "clamp(280px, 42vh, 420px)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: isMobile ? "56px 24px" : "0 clamp(36px, 7vw, 96px)",
-        alignItems: isMobile ? "flex-start" : isEven ? "flex-start" : "flex-end",
-        overflow: "hidden",
-        transition: "background 0.4s ease",
-      }}
-    >
-      {/* Accent glow */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(ellipse at ${isEven ? "18% 55%" : "82% 45%"}, ${accent}1f, transparent 55%)`,
-          opacity: hovered ? 1 : 0.5,
-          transition: "opacity 0.5s ease",
-        }}
-      />
-
-      {/* Decorative circle */}
-      {!isMobile && (
-        <div
-          style={{
-            position: "absolute",
-            ...(isEven ? { right: "8%" } : { left: "8%" }),
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: 200,
-            height: 200,
-            border: `1px solid ${isDark ? `${COLORS.bg}1f` : `${COLORS.accent}25`}`,
-            borderRadius: "50%",
-          }}
-        />
-      )}
-
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: 540,
-          textAlign: isMobile ? "left" : isEven ? "left" : "right",
-        }}
-      >
-        <span
-          style={{
-            display: "inline-block",
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.6rem",
-            fontWeight: 400,
-            letterSpacing: "0.32em",
-            textTransform: "uppercase",
-            color: accent,
-            background: `${accent}1c`,
-            padding: "5px 12px",
-            marginBottom: 18,
-          }}
-        >
-          {service.tag}
-        </span>
-        <h2
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: isMobile ? "clamp(1.8rem, 7vw, 2.4rem)" : "clamp(2.2rem, 4vw, 3.4rem)",
-            fontWeight: 600,
-            color: fg,
-            letterSpacing: "-0.01em",
-            lineHeight: 1.05,
-            marginBottom: 16,
-            transform: hovered ? `translateX(${isEven ? 6 : -6}px)` : "translateX(0)",
-            transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
-        >
-          {service.name}
-        </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.95rem",
-            lineHeight: 1.7,
-            color: muted,
-            marginBottom: 22,
-          }}
-          dangerouslySetInnerHTML={{ __html: service.description }}
-        />
-        <ul
-          style={{
-            listStyle: "none",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 8,
-            marginBottom: 28,
-            justifyContent: !isMobile && !isEven ? "flex-end" : "flex-start",
-          }}
-        >
-          {service.bullets.map((b, i) => (
-            <li
-              key={i}
-              style={{
-                fontSize: "0.72rem",
-                fontWeight: 500,
-                letterSpacing: "0.06em",
-                color: fg,
-                background: isDark ? `${COLORS.bg}10` : `${COLORS.fg}08`,
-                padding: "6px 12px",
-                borderRadius: 999,
-              }}
-              dangerouslySetInnerHTML={{ __html: b }}
-            />
-          ))}
-        </ul>
-        <a
-          href="#contact"
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.7rem",
-            fontWeight: 700,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: fg,
-            paddingBottom: 4,
-            borderBottom: `1.5px solid ${linkBorder}`,
-            transition: "border-color 0.3s ease",
-          }}
-        >
-          Request Quote →
-        </a>
-      </div>
-    </article>
-  );
-}
+const services = [
+  { name: "Roof Inspections", icon: "house" as const },
+  { name: "Roof Repairs", icon: "shield" as const },
+  { name: "Roof Replacements", icon: "handshake" as const },
+];
 
 export default function ServicesBanners() {
   return (
-    <section id="services" style={{ padding: "100px 0 0", background: COLORS.bg }}>
-      <div style={{ textAlign: "center", padding: "0 24px", marginBottom: 56 }}>
-        <p
-          className="fade-up"
+    <section
+      id="services"
+      style={{
+        padding: "120px clamp(16px, 3vw, 48px)",
+        background: "linear-gradient(180deg, #DCE9F2 0%, #C0D5E5 100%)",
+      }}
+    >
+      <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+        <div
+          className="services-grid"
           style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.78rem",
-            letterSpacing: "0.32em",
-            textTransform: "uppercase",
-            color: COLORS.accent,
-            marginBottom: 12,
+            display: "grid",
+            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.3fr)",
+            gap: "clamp(32px, 5vw, 80px)",
+            alignItems: "center",
           }}
         >
-          What We Do
-        </p>
-        <h2
-          className="fade-up d1"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
-            fontWeight: 600,
-            color: COLORS.fg,
-            letterSpacing: "-0.01em",
-            lineHeight: 1.1,
-          }}
-        >
-          Three things, done <em style={{ color: COLORS.accent }}>well.</em>
-        </h2>
+          {/* Left content */}
+          <div className="fade-up d1">
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.95rem",
+                fontWeight: 700,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: COLORS.accent,
+                marginBottom: 18,
+              }}
+            >
+              Services
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(2rem, 4.2vw, 3.4rem)",
+                fontWeight: 800,
+                color: COLORS.fg,
+                letterSpacing: "0.005em",
+                lineHeight: 1.05,
+                textTransform: "uppercase",
+                marginBottom: 56,
+              }}
+            >
+              Built in Austin, TX
+            </h2>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                gap: 16,
+                marginBottom: 44,
+                maxWidth: 520,
+              }}
+            >
+              {services.map((s) => (
+                <div
+                  key={s.name}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: 14,
+                    textAlign: "center",
+                  }}
+                >
+                  <ServiceIcon kind={s.icon} />
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "0.95rem",
+                      fontWeight: 700,
+                      color: COLORS.fg,
+                      letterSpacing: "-0.005em",
+                    }}
+                  >
+                    {s.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              style={{
+                display: "inline-block",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.85rem",
+                fontWeight: 700,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                padding: "14px 28px",
+                background: COLORS.accent,
+                color: COLORS.white,
+                borderRadius: 6,
+                transition: "background 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = COLORS.accentDark;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = COLORS.accent;
+              }}
+            >
+              Learn More
+            </a>
+          </div>
+
+          {/* Right photo */}
+          <div className="fade-up d2">
+            <PhotoFrame src={SERVICES_PHOTO} alt="Specialty Roofing crew member on a roof" />
+          </div>
+        </div>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        {SERVICES.map((s, i) => (
-          <ServiceBanner key={s.id} service={s} index={i} />
-        ))}
-      </div>
+      <style>{`
+        @media (max-width: 880px) {
+          .services-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
+  );
+}
+
+function PhotoFrame({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div
+      style={{
+        position: "relative",
+        aspectRatio: "3 / 2",
+        background: COLORS.soft,
+        border: `2px solid ${COLORS.fg}`,
+        borderRadius: 24,
+        overflow: "hidden",
+        boxShadow: "0 24px 60px rgba(20,40,75,0.12)",
+      }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 880px) 100vw, 60vw"
+        style={{ objectFit: "cover", objectPosition: "center" }}
+      />
+    </div>
+  );
+}
+
+function ServiceIcon({ kind }: { kind: "house" | "shield" | "handshake" }) {
+  const stroke = COLORS.fg;
+  const sw = 1.6;
+  return (
+    <svg
+      width={84}
+      height={84}
+      viewBox="0 0 64 64"
+      fill="none"
+      stroke={stroke}
+      strokeWidth={sw}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {kind === "house" && (
+        <>
+          <path d="M10 30 L32 12 L54 30" />
+          <path d="M16 28 L16 52 L48 52 L48 28" />
+          <rect x="28" y="36" width="8" height="16" />
+          <rect x="20" y="34" width="6" height="8" />
+          <rect x="38" y="34" width="6" height="8" />
+        </>
+      )}
+      {kind === "shield" && (
+        <>
+          <path d="M32 8 L52 16 L52 32 C52 44 42 52 32 56 C22 52 12 44 12 32 L12 16 Z" />
+          <path d="M22 32 L29 39 L42 26" />
+        </>
+      )}
+      {kind === "handshake" && (
+        <>
+          <path d="M6 32 L14 24 L22 30 L30 22 L38 30 L46 22 L58 32" />
+          <path d="M14 32 L22 40 L30 32 L38 40 L46 32" />
+          <path d="M32 28 C32 28 28 32 28 36 C28 40 32 42 32 42" />
+        </>
+      )}
+    </svg>
   );
 }

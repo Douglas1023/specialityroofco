@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a9c5da"/>
+      <stop offset="100%" stop-color="#cfe0ee"/>
+    </linearGradient>
+    <pattern id="shingles" x="0" y="0" width="46" height="22" patternUnits="userSpaceOnUse">
+      <rect width="46" height="22" fill="#3a3530"/>
+      <path d="M0 22 L23 11 L46 22" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.2"/>
+      <path d="M0 11 L23 0 L46 11" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="750" fill="url(#sky)"/>
+
+  <!-- distant trees -->
+  <ellipse cx="80" cy="280" rx="160" ry="60" fill="#5d7a52" opacity="0.55"/>
+  <ellipse cx="260" cy="270" rx="180" ry="55" fill="#4a6841" opacity="0.55"/>
+  <ellipse cx="900" cy="270" rx="200" ry="65" fill="#5d7a52" opacity="0.55"/>
+
+  <!-- roof slope going up to the right -->
+  <polygon points="0,750 0,440 1000,200 1000,750" fill="url(#shingles)"/>
+
+  <!-- ridge line highlight -->
+  <line x1="0" y1="440" x2="1000" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+
+  <!-- worker from behind, kneeling -->
+  <g transform="translate(560 380)">
+    <!-- shadow -->
+    <ellipse cx="0" cy="240" rx="180" ry="14" fill="rgba(0,0,0,0.22)"/>
+
+    <!-- legs (kneeling) -->
+    <path d="M -90 110 Q -100 180 -70 220 L 70 220 Q 100 180 90 110 Z" fill="#2a2c34"/>
+    <!-- boots -->
+    <path d="M -100 220 L -50 240 L -50 215 L -100 215 Z" fill="#2a1f17"/>
+    <path d="M 100 220 L 50 240 L 50 215 L 100 215 Z" fill="#2a1f17"/>
+
+    <!-- tool belt -->
+    <rect x="-110" y="100" width="220" height="22" fill="#3a2618" rx="3"/>
+    <rect x="-90" y="115" width="40" height="60" fill="#5a3a25" rx="3"/>
+    <rect x="60" y="115" width="50" height="55" fill="#5a3a25" rx="3"/>
+
+    <!-- torso (white shirt) -->
+    <path d="M -90 -20 Q -95 60 -80 110 L 80 110 Q 95 60 90 -20 Q 80 -38 0 -38 Q -80 -38 -90 -20 Z" fill="#e9eced"/>
+
+    <!-- specialty roofing logo on back (orange-ish wordmark) -->
+    <g transform="translate(0 50)">
+      <!-- house mark -->
+      <path d="M -36 -8 L 0 -22 L 36 -8 L 36 -2 L 0 -16 L -36 -2 Z" fill="#d97a3c"/>
+      <!-- "Specialty" wordmark -->
+      <text x="0" y="14" text-anchor="middle"
+            font-family="Bricolage Grotesque, Inter, sans-serif"
+            font-size="22" font-weight="800" font-style="italic"
+            fill="#d97a3c" letter-spacing="-0.5">Specialty</text>
+      <text x="0" y="28" text-anchor="middle"
+            font-family="Inter, sans-serif"
+            font-size="7" font-weight="700"
+            fill="#1e3a5f" letter-spacing="3">ROOFING</text>
+    </g>
+
+    <!-- arms reaching forward (visible at sides) -->
+    <ellipse cx="-92" cy="35" rx="20" ry="38" fill="#e9eced"/>
+    <ellipse cx="92" cy="35" rx="20" ry="38" fill="#e9eced"/>
+
+    <!-- skin: forearms -->
+    <ellipse cx="-92" cy="78" rx="14" ry="18" fill="#caa07c"/>
+    <ellipse cx="92" cy="78" rx="14" ry="18" fill="#caa07c"/>
+
+    <!-- head + cap from behind -->
+    <ellipse cx="0" cy="-78" rx="34" ry="38" fill="#9c7656"/>
+    <!-- cap -->
+    <path d="M -38 -88 Q 0 -120 38 -88 L 38 -76 L -38 -76 Z" fill="#a89d8a"/>
+    <ellipse cx="0" cy="-76" rx="38" ry="6" fill="#a89d8a"/>
+  </g>
+</svg>

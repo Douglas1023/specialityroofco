@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { BRAND, COLORS } from "../data/brand";
 
 export default function Hero() {
@@ -9,19 +10,49 @@ export default function Hero() {
       style={{
         position: "relative",
         minHeight: "82vh",
-        background: COLORS.bg,
+        background: COLORS.dark,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
       }}
     >
-      {/* Subtle warm glow */}
+      {/* Background photo */}
+      <Image
+        src="/hero-roof.jpg"
+        alt="Specialty Roofing crew installing shingles"
+        fill
+        priority
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          zIndex: 0,
+        }}
+        sizes="100vw"
+      />
+
+      {/* Gradient overlay for legibility */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `radial-gradient(circle at 50% 35%, ${COLORS.accent}10 0%, transparent 55%)`,
+          zIndex: 1,
+          background:
+            "linear-gradient(180deg, rgba(20,40,75,0.55) 0%, rgba(20,40,75,0.45) 40%, rgba(20,40,75,0.75) 100%)",
+        }}
+      />
+
+      {/* Bottom fade into next section */}
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 140,
+          zIndex: 1,
+          background: `linear-gradient(180deg, transparent, ${COLORS.bg})`,
+          pointerEvents: "none",
         }}
       />
 
@@ -30,9 +61,10 @@ export default function Hero() {
           position: "relative",
           zIndex: 2,
           textAlign: "center",
-          padding: "0 24px",
+          padding: "120px 24px 80px",
           maxWidth: 820,
           margin: "0 auto",
+          color: COLORS.white,
         }}
       >
         <p
@@ -44,7 +76,7 @@ export default function Hero() {
             color: COLORS.accent,
             letterSpacing: "0.32em",
             textTransform: "uppercase",
-            marginBottom: 24,
+            marginBottom: 22,
           }}
         >
           Austin · Round Rock · Cedar Park
@@ -56,10 +88,11 @@ export default function Hero() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2.6rem, 7vw, 5.4rem)",
             fontWeight: 600,
-            color: COLORS.fg,
+            color: COLORS.white,
             lineHeight: 1.02,
             letterSpacing: "-0.02em",
             marginBottom: 14,
+            textShadow: "0 2px 30px rgba(0,0,0,0.35)",
           }}
         >
           A roof done <em style={{ color: COLORS.accent, fontStyle: "italic" }}>right</em>
@@ -72,7 +105,7 @@ export default function Hero() {
           style={{
             width: 56,
             height: 1,
-            background: `${COLORS.accent}99`,
+            background: `${COLORS.accent}cc`,
             margin: "28px auto",
           }}
         />
@@ -83,9 +116,10 @@ export default function Hero() {
             fontFamily: "var(--font-body)",
             fontSize: "1.05rem",
             lineHeight: 1.7,
-            color: COLORS.fgMuted,
+            color: `${COLORS.white}d9`,
             maxWidth: 540,
             margin: "0 auto 36px",
+            textShadow: "0 2px 14px rgba(0,0,0,0.45)",
           }}
         >
           {BRAND.subtitle}
@@ -114,9 +148,14 @@ export default function Hero() {
               borderRadius: 999,
               transition: "all 0.3s ease",
               display: "inline-block",
+              boxShadow: "0 8px 24px rgba(184,100,44,0.35)",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = COLORS.accentDark; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = COLORS.accent; }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = COLORS.accentDark;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = COLORS.accent;
+            }}
           >
             Get a Free Quote
           </a>
@@ -130,14 +169,20 @@ export default function Hero() {
               textTransform: "uppercase",
               padding: "16px 38px",
               background: "transparent",
-              color: COLORS.fg,
-              border: `1px solid ${COLORS.fg}33`,
+              color: COLORS.white,
+              border: `1px solid ${COLORS.white}66`,
               borderRadius: 999,
               transition: "all 0.3s ease",
               display: "inline-block",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = COLORS.fg; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = `${COLORS.fg}33`; }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = COLORS.white;
+              e.currentTarget.style.background = `${COLORS.white}14`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = `${COLORS.white}66`;
+              e.currentTarget.style.background = "transparent";
+            }}
           >
             Call {BRAND.phone}
           </a>
@@ -157,16 +202,32 @@ export default function Hero() {
             fontWeight: 600,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: COLORS.fgMuted,
+            color: `${COLORS.white}b0`,
           }}
         >
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <span
+            style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+          >
             <Stars />
             <span>4.9 / 5 · 200+ Reviews</span>
           </span>
-          <span style={{ width: 4, height: 4, borderRadius: 999, background: `${COLORS.fgMuted}55` }} />
+          <span
+            style={{
+              width: 4,
+              height: 4,
+              borderRadius: 999,
+              background: `${COLORS.white}55`,
+            }}
+          />
           <span>Licensed &amp; Insured</span>
-          <span style={{ width: 4, height: 4, borderRadius: 999, background: `${COLORS.fgMuted}55` }} />
+          <span
+            style={{
+              width: 4,
+              height: 4,
+              borderRadius: 999,
+              background: `${COLORS.white}55`,
+            }}
+          />
           <span>Family Owned</span>
         </div>
       </div>
@@ -176,7 +237,14 @@ export default function Hero() {
 
 function Stars() {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 1, color: COLORS.accent }}>
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 1,
+        color: COLORS.accent,
+      }}
+    >
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} width={12} height={12} viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
