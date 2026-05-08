@@ -1,22 +1,29 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BRAND, COLORS } from "../data/brand";
 import Logo from "./Logo";
 
-const left = [
-  { href: "#about", label: "About Us" },
+const navItems = [
   { href: "#services", label: "Services" },
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
   { href: "#reviews", label: "Reviews" },
-  { href: "#promise", label: "Our Promise" },
-];
-const right = [
-  { href: "#projects", label: "Recent Work" },
-  { href: "#quote", label: "Get a Quote!" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export default function Nav() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 900);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -27,82 +34,143 @@ export default function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white transition-shadow ${
-        scrolled ? "shadow-sm" : ""
-      }`}
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: scrolled ? `${COLORS.bg}f0` : "transparent",
+        backdropFilter: scrolled ? "blur(8px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(8px)" : "none",
+        borderBottom: scrolled ? `1px solid ${COLORS.border}` : "1px solid transparent",
+        transition: "all 0.3s ease",
+      }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
-        {/* Left links */}
-        <ul className="hidden lg:flex items-center gap-8 text-[13px] font-semibold text-[var(--color-navy)]">
-          {left.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="hover:text-[var(--color-orange)] transition-colors">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "16px clamp(16px, 3vw, 32px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 24,
+        }}
+      >
+        <Link href="/" aria-label="Specialty Roofing home" style={{ display: "flex", alignItems: "center" }}>
+          <Logo width={isMobile ? 130 : 160} />
+        </Link>
 
-        {/* Center logo */}
-        <a href="#home" className="lg:absolute lg:left-1/2 lg:-translate-x-1/2">
-          <Logo />
-        </a>
+        {!isMobile && (
+          <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
+            <ul style={{ display: "flex", alignItems: "center", gap: 28, listStyle: "none" }}>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    style={{
+                      fontSize: "0.78rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: COLORS.fg,
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = COLORS.accent; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = COLORS.fg; }}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#contact"
+              style={{
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                padding: "12px 24px",
+                background: COLORS.accent,
+                color: COLORS.white,
+                borderRadius: 999,
+                transition: "background 0.2s ease",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = COLORS.accentDark; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = COLORS.accent; }}
+            >
+              Free Quote
+            </a>
+          </nav>
+        )}
 
-        {/* Right links */}
-        <ul className="hidden lg:flex items-center gap-8 text-[13px] font-semibold text-[var(--color-navy)]">
-          {right.map((l) =>
-            l.href === "#quote" ? (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className="inline-flex items-center px-5 py-2.5 rounded-full bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] text-white font-bold transition-colors"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ) : (
-              <li key={l.href}>
-                <a href={l.href} className="hover:text-[var(--color-orange)] transition-colors">
-                  {l.label}
-                </a>
-              </li>
-            )
-          )}
-        </ul>
-
-        {/* Mobile button */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="lg:hidden inline-flex items-center justify-center w-10 h-10 text-[var(--color-navy)]"
-          aria-label="Toggle menu"
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            {open ? (
-              <>
-                <line x1="6" y1="6" x2="18" y2="18" />
-                <line x1="18" y1="6" x2="6" y2="18" />
-              </>
-            ) : (
-              <>
-                <line x1="3" y1="8" x2="21" y2="8" />
-                <line x1="3" y1="16" x2="21" y2="16" />
-              </>
-            )}
-          </svg>
-        </button>
+        {isMobile && (
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            onClick={() => setOpen((v) => !v)}
+            style={{
+              width: 40,
+              height: 40,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 5,
+            }}
+          >
+            <span style={{ display: "block", width: 22, height: 1.5, background: COLORS.fg, transition: "all 0.3s", transform: open ? "translateY(3.25px) rotate(45deg)" : "none" }} />
+            <span style={{ display: "block", width: 22, height: 1.5, background: COLORS.fg, transition: "all 0.3s", opacity: open ? 0 : 1 }} />
+            <span style={{ display: "block", width: 22, height: 1.5, background: COLORS.fg, transition: "all 0.3s", transform: open ? "translateY(-3.25px) rotate(-45deg)" : "none" }} />
+          </button>
+        )}
       </div>
 
-      {open && (
-        <div className="lg:hidden border-t border-[var(--color-line)]">
-          <ul className="px-6 py-5 flex flex-col gap-4 text-sm font-semibold text-[var(--color-navy)]">
-            {[...left, ...right].map((l) => (
-              <li key={l.href}>
-                <a href={l.href} onClick={() => setOpen(false)}>
-                  {l.label}
+      {isMobile && open && (
+        <div
+          style={{
+            background: COLORS.bg,
+            borderTop: `1px solid ${COLORS.border}`,
+            padding: "20px clamp(16px, 3vw, 32px)",
+          }}
+        >
+          <ul style={{ display: "flex", flexDirection: "column", gap: 16, listStyle: "none" }}>
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  style={{
+                    fontSize: "0.85rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: COLORS.fg,
+                  }}
+                >
+                  {item.label}
                 </a>
               </li>
             ))}
+            <li style={{ marginTop: 8 }}>
+              <a
+                href={BRAND.phoneHref}
+                onClick={() => setOpen(false)}
+                style={{
+                  display: "inline-block",
+                  fontSize: "0.78rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  padding: "12px 24px",
+                  background: COLORS.accent,
+                  color: COLORS.white,
+                  borderRadius: 999,
+                }}
+              >
+                Free Quote · {BRAND.phone}
+              </a>
+            </li>
           </ul>
         </div>
       )}
