@@ -9,7 +9,7 @@ import { COLORS } from "../data/brand";
  * change SERVICES_PHOTO to the new path. Recommended: ~3:2 landscape,
  * 1400x950+ for retina.
  */
-const SERVICES_PHOTO = "/services-roofer.svg"; // placeholder until you drop in your real photo
+const SERVICES_PHOTO = "/servicespic.png";
 
 const services = [
   { name: "Roof Inspections", icon: "house" as const },
@@ -150,11 +150,10 @@ function PhotoFrame({ src, alt }: { src: string; alt: string }) {
       style={{
         position: "relative",
         aspectRatio: "3 / 2",
-        background: COLORS.soft,
-        border: `2px solid ${COLORS.fg}`,
-        borderRadius: 24,
+        background: COLORS.fg,
+        borderRadius: 20,
         overflow: "hidden",
-        boxShadow: "0 24px 60px rgba(20,40,75,0.12)",
+        boxShadow: "0 24px 60px rgba(20,40,75,0.18)",
       }}
     >
       <Image
@@ -162,7 +161,11 @@ function PhotoFrame({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         fill
         sizes="(max-width: 880px) 100vw, 60vw"
-        style={{ objectFit: "cover", objectPosition: "center" }}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          transform: "scale(1.1)",
+        }}
       />
     </div>
   );

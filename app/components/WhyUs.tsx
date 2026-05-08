@@ -191,11 +191,10 @@ function PhotoFrame({ src, alt }: { src: string; alt: string }) {
       style={{
         position: "relative",
         aspectRatio: "4 / 5",
-        background: COLORS.soft,
-        border: `2px solid ${COLORS.fg}`,
-        borderRadius: 24,
+        background: COLORS.fg,
+        borderRadius: 20,
         overflow: "hidden",
-        boxShadow: "0 24px 60px rgba(20,40,75,0.12)",
+        boxShadow: "0 24px 60px rgba(20,40,75,0.18)",
       }}
     >
       <Image
@@ -206,7 +205,7 @@ function PhotoFrame({ src, alt }: { src: string; alt: string }) {
         style={{
           objectFit: "cover",
           objectPosition: "center",
-          transform: "scale(1.08)",
+          transform: "scale(1.18)",
         }}
       />
     </div>
