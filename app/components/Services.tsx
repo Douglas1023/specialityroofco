@@ -1,71 +1,61 @@
 const services = [
-  {
-    title: "Roof Inspections",
-    desc: "Thorough top-to-bottom inspections that catch problems before they become expensive.",
-    icon: "house",
-  },
-  {
-    title: "Roof Repairs",
-    desc: "Leak repairs, shingle replacement, flashing, and storm damage — fixed right the first time.",
-    icon: "shield",
-  },
-  {
-    title: "Roof Replacements",
-    desc: "Full residential roof replacements with quality materials and a lasting warranty.",
-    icon: "handshake",
-  },
+  "Roof Inspections",
+  "Roof Repairs",
+  "Full Roof Replacements",
+  "Storm &amp; Hail Damage",
+  "Leak Repairs",
+  "Shingle Replacement",
+  "Flashing Repair",
+  "Gutter Cleaning",
+  "Skylight Service",
+  "Insurance Claims",
+  "Emergency Tarping",
+  "Roof Maintenance",
 ];
 
 export default function Services() {
   return (
-    <section id="projects" className="bg-[var(--color-cream-soft)]">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+    <section id="services" className="bg-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 sm:py-28">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="fade-up d1">
-            <span className="text-xs font-bold tracking-[0.25em] text-[var(--color-orange)]">
-              SERVICES
-            </span>
-            <h2 className="mt-3 font-[var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[var(--color-navy)]">
-              Built in Austin, TX.
-            </h2>
-            <p className="mt-4 text-[var(--color-text-muted)] max-w-lg">
-              Locally owned and operated. Every roof we install is built to handle Texas
-              weather — heat, hail, and everything in between.
-            </p>
-
-            <div className="mt-8 grid sm:grid-cols-3 gap-4">
-              {services.map((s) => (
-                <div
-                  key={s.title}
-                  className="rounded-2xl bg-white p-5 ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="h-12 w-12 rounded-xl bg-[var(--color-orange)]/10 grid place-items-center text-[var(--color-orange)]">
-                    {s.icon === "house" && <HouseIcon />}
-                    {s.icon === "shield" && <ShieldIcon />}
-                    {s.icon === "handshake" && <HandshakeIcon />}
-                  </div>
-                  <div className="mt-3 text-sm font-bold text-[var(--color-navy)] leading-tight">
-                    {s.title}
-                  </div>
-                  <p className="mt-1.5 text-xs text-[var(--color-text-muted)] leading-relaxed">
-                    {s.desc}
-                  </p>
-                </div>
-              ))}
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden ring-1 ring-[var(--color-line)] bg-[var(--color-blue-2)]">
+              <RooferImage />
             </div>
-
-            <a
-              href="#contact"
-              className="mt-8 inline-flex items-center px-6 py-3 rounded-md bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] text-white font-bold tracking-wide transition-colors"
-            >
-              LEARN MORE
-            </a>
           </div>
 
           <div className="fade-up d2">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-black/5 shadow-xl">
-              <RooferIllustration />
-            </div>
+            <p className="text-[11px] font-bold tracking-[0.32em] uppercase text-[var(--color-orange)]">
+              Our Services
+            </p>
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.05] tracking-tight text-[var(--color-navy)]">
+              We take pride in our work, no matter the project.
+            </h2>
+            <p className="mt-5 text-[var(--color-muted)] max-w-md">
+              From a single missing shingle to a complete tear-off and replacement,
+              every job gets the same attention to detail and the same lifetime-craftsmanship guarantee.
+            </p>
+
+            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3 max-w-md">
+              {services.map((s) => (
+                <li key={s}>
+                  <a
+                    href="#quote"
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-navy)] hover:text-[var(--color-orange)] transition-colors"
+                    dangerouslySetInnerHTML={{
+                      __html: `<span class="h-1.5 w-1.5 rounded-full bg-[var(--color-orange)] group-hover:scale-125 transition-transform inline-block" style="display:inline-block"></span> ${s}`,
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#quote"
+              className="mt-10 inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-navy)] hover:bg-[var(--color-navy-deep)] text-white font-bold transition-colors"
+            >
+              Get a Free Quote →
+            </a>
           </div>
         </div>
       </div>
@@ -73,50 +63,32 @@ export default function Services() {
   );
 }
 
-function HouseIcon() {
+function RooferImage() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 11l9-7 9 7" /><path d="M5 10v10h14V10" /><path d="M9 20v-6h6v6" />
-    </svg>
-  );
-}
-function ShieldIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" /><path d="M9 12l2 2 4-4" />
-    </svg>
-  );
-}
-function HandshakeIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 12l5-5 4 4 4-4 5 5" /><path d="M7 16l5 5 5-5" /><path d="M12 11v10" />
-    </svg>
-  );
-}
-
-function RooferIllustration() {
-  return (
-    <svg viewBox="0 0 400 300" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 400 500" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <pattern id="shingles2" x="0" y="0" width="24" height="12" patternUnits="userSpaceOnUse">
-          <rect width="24" height="12" fill="#3a4a5e" />
-          <path d="M0 12 L12 6 L24 12" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+        <linearGradient id="sky-svc" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#cfe0ee" />
+          <stop offset="100%" stopColor="#e3edf5" />
+        </linearGradient>
+        <pattern id="sh-svc" x="0" y="0" width="22" height="11" patternUnits="userSpaceOnUse">
+          <rect width="22" height="11" fill="#3a3530" />
+          <path d="M0 11 L11 5 L22 11" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
         </pattern>
       </defs>
-      <rect width="400" height="300" fill="#cfe0ee" />
-      <circle cx="320" cy="60" r="36" fill="#f4e7cc" />
+      <rect width="400" height="500" fill="url(#sky-svc)" />
+      <circle cx="320" cy="80" r="50" fill="#f4d8a8" opacity="0.5" />
       {/* roof slope */}
-      <polygon points="0,300 0,180 400,80 400,300" fill="url(#shingles2)" />
+      <polygon points="0,500 0,320 400,180 400,500" fill="url(#sh-svc)" />
       {/* worker */}
-      <g transform="translate(180 130)">
-        <ellipse cx="0" cy="-30" rx="20" ry="22" fill="#ebd8b6" />
-        <rect x="-25" y="-12" width="50" height="60" rx="8" fill="#e08544" />
-        <text x="0" y="22" textAnchor="middle" fontFamily="Inter" fontSize="9" fontWeight="800" fill="#fff">SPECIALTY</text>
-        <rect x="-20" y="48" width="14" height="50" fill="#1e3a5f" />
-        <rect x="6" y="48" width="14" height="50" fill="#1e3a5f" />
-        {/* tool belt */}
-        <rect x="-28" y="44" width="56" height="8" fill="#15294a" />
+      <g transform="translate(200 280)">
+        <ellipse cx="0" cy="-50" rx="22" ry="26" fill="#d8a679" />
+        <rect x="-30" y="-26" width="60" height="70" rx="10" fill="#e08544" />
+        <rect x="-30" y="-26" width="60" height="14" fill="#1e3a5f" />
+        <text x="0" y="14" textAnchor="middle" fontFamily="Inter" fontSize="9" fontWeight="800" fill="#fff">SPECIALTY</text>
+        <rect x="-22" y="44" width="20" height="60" fill="#f4ecdc" />
+        <rect x="2" y="44" width="20" height="60" fill="#f4ecdc" />
+        <rect x="-30" y="40" width="60" height="8" fill="#3a2218" />
       </g>
     </svg>
   );

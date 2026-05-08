@@ -6,11 +6,10 @@ import Footer from "./components/Footer";
 export const metadata: Metadata = {
   title: "Specialty Roofing — Austin, TX",
   description:
-    "Specialty Roofing is a roofing company you can trust. Roof inspections, repairs, and replacements in Austin, TX.",
+    "Roof inspections, repairs, and replacements in Austin, TX. Honest work, done right the first time.",
   openGraph: {
     title: "Specialty Roofing — Austin, TX",
-    description:
-      "Roof inspections, repairs, and replacements built on honest work in Austin, TX.",
+    description: "Honest roofing in Austin, TX. Done right the first time.",
     type: "website",
   },
 };

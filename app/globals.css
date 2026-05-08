@@ -1,41 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --color-navy: #1e3a5f;
-  --color-navy-deep: #15294a;
-  --color-blue-soft: #cfe0ee;
-  --color-blue-soft-2: #e3edf5;
-  --color-cream: #ebd8b6;
+  /* Specialty Roofing palette (from mockups) */
+  --color-bg: #ffffff;
+  --color-bg-soft: #f3f7fb;
+  --color-blue: #cfe0ee;        /* light blue */
+  --color-blue-2: #e3edf5;
+  --color-cream: #ebd8b6;       /* warm cream */
   --color-cream-soft: #f4e7cc;
-  --color-orange: #e08544;
+  --color-navy: #1e3a5f;        /* deep navy */
+  --color-navy-deep: #15294a;
+  --color-orange: #e08544;      /* burnt orange accent */
   --color-orange-hover: #cf7536;
   --color-text: #1c2a3d;
-  --color-text-muted: #5a6b80;
-  --color-bg: #ffffff;
+  --color-muted: #6a7689;
+  --color-line: #e6ebf1;
 
-  --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 }
 
 @theme inline {
-  --color-navy: var(--color-navy);
-  --color-navy-deep: var(--color-navy-deep);
-  --color-blue-soft: var(--color-blue-soft);
-  --color-blue-soft-2: var(--color-blue-soft-2);
+  --color-bg: var(--color-bg);
+  --color-bg-soft: var(--color-bg-soft);
+  --color-blue: var(--color-blue);
+  --color-blue-2: var(--color-blue-2);
   --color-cream: var(--color-cream);
   --color-cream-soft: var(--color-cream-soft);
+  --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
   --color-orange: var(--color-orange);
   --color-orange-hover: var(--color-orange-hover);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-line: var(--color-line);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-  width: 100%;
-  overflow-x: clip;
-}
+html, body { width: 100%; overflow-x: clip; }
 
 body {
   font-family: var(--font-body);
@@ -44,20 +49,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::selection {
-  background: var(--color-orange);
-  color: #fff;
-}
-
 a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+::selection { background: var(--color-orange); color: #fff; }
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-.fade-up { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.fade-up { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .d1 { animation-delay: 0.05s; }
-.d2 { animation-delay: 0.12s; }
-.d3 { animation-delay: 0.2s; }
-.d4 { animation-delay: 0.28s; }
+.d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.25s; }
+.d4 { animation-delay: 0.35s; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 40s linear infinite; }

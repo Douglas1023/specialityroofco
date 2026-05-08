@@ -1,19 +1,25 @@
 import Hero from "./components/Hero";
-import About from "./components/About";
+import QuoteForm from "./components/QuoteForm";
 import Services from "./components/Services";
-import Reviews from "./components/Reviews";
-import RecentProjects from "./components/RecentProjects";
-import Contact from "./components/Contact";
+import HelloAustin from "./components/HelloAustin";
+import Promise from "./components/Promise";
+import FounderNote from "./components/FounderNote";
+import Gallery from "./components/Gallery";
+import Testimonials from "./components/Testimonials";
+import CTABanner from "./components/CTABanner";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <About />
+      <QuoteForm />
       <Services />
-      <Reviews />
-      <RecentProjects />
-      <Contact />
+      <HelloAustin />
+      <Promise />
+      <FounderNote />
+      <Gallery />
+      <Testimonials />
+      <CTABanner />
     </>
   );
 }

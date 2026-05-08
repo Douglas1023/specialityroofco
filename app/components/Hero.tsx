@@ -1,156 +1,100 @@
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative isolate overflow-hidden bg-[var(--color-navy)] text-white"
-    >
-      {/* Background gradient + texture */}
+    <section id="home" className="relative isolate overflow-hidden min-h-[78vh] flex items-center">
+      {/* Background photo (placeholder) */}
       <div className="absolute inset-0 -z-10">
+        <RoofBackdrop />
+        {/* Dark gradient for legibility */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, #1e3a5f 0%, #15294a 60%, #0f1f38 100%)",
+              "linear-gradient(180deg, rgba(15,30,55,0.55) 0%, rgba(15,30,55,0.65) 50%, rgba(15,30,55,0.85) 100%)",
           }}
         />
-        <div
-          className="absolute inset-0 opacity-25"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, rgba(224,133,68,0.35), transparent 45%), radial-gradient(circle at 80% 30%, rgba(207,224,238,0.18), transparent 40%)",
-          }}
-        />
-        {/* roof line silhouette */}
-        <svg
-          className="absolute bottom-0 left-0 right-0 w-full"
-          viewBox="0 0 1440 120"
-          fill="none"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <path
-            d="M0 120 L0 80 L240 30 L520 80 L760 20 L1040 70 L1280 25 L1440 75 L1440 120 Z"
-            fill="rgba(255,255,255,0.06)"
-          />
-        </svg>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 pt-20 pb-28 sm:pt-28 sm:pb-36 lg:pt-32 lg:pb-44">
-        <div className="grid lg:grid-cols-2 items-center gap-12">
-          <div className="fade-up d1">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-xs font-semibold tracking-widest uppercase">
-              <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-orange)]" />
-              Austin, TX • Family Owned
-            </span>
-            <h1 className="mt-6 font-[var(--font-display)] text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              A roof that&rsquo;s done <span className="text-[var(--color-orange)]">right</span>
-              <br className="hidden sm:block" /> the first time.
-            </h1>
-            <p className="mt-5 text-lg text-white/80 max-w-xl">
-              From residential repairs to full roof replacements, Specialty Roofing delivers
-              honest work, lasting results, and a stress-free experience.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="#contact"
-                className="inline-flex items-center px-6 py-3.5 rounded-md bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] text-white font-bold tracking-wide transition-colors"
-              >
-                GET A FREE QUOTE
-              </a>
-              <a
-                href="#about"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md border border-white/30 hover:border-white text-white font-semibold transition-colors"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                Watch Our Story
-              </a>
-            </div>
-            <div className="mt-10 flex items-center gap-8 text-sm text-white/70">
-              <Stat label="5-Star Reviews" value="200+" />
-              <div className="h-8 w-px bg-white/15" />
-              <Stat label="Roofs Done" value="1,500+" />
-              <div className="h-8 w-px bg-white/15" />
-              <Stat label="Years in Austin" value="15" />
-            </div>
-          </div>
+      <div className="relative w-full mx-auto max-w-5xl px-6 lg:px-10 py-20 sm:py-28 text-center text-white">
+        <p className="fade-up d1 text-[11px] sm:text-xs font-bold tracking-[0.32em] uppercase text-[var(--color-cream)]">
+          Austin · Round Rock · Cedar Park · Westlake
+        </p>
+        <h1 className="fade-up d2 mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[0.98] tracking-tight">
+          Specialty Roofing
+          <br />
+          <span className="text-[var(--color-orange)]">Austin, TX</span>
+        </h1>
+        <p className="fade-up d3 mt-6 text-base sm:text-lg text-white/85 max-w-xl mx-auto">
+          Honest work. Lasting roofs. Done right the first time.
+        </p>
 
-          {/* Right: stylized "card" of roof imagery */}
-          <div className="fade-up d3 hidden lg:block">
-            <div className="relative">
-              <div className="aspect-[4/5] rounded-3xl bg-[var(--color-blue-soft)] overflow-hidden ring-1 ring-white/10 shadow-2xl">
-                <RoofIllustration />
-              </div>
-              <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white text-[var(--color-navy)] px-5 py-4 shadow-xl">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-[var(--color-orange)]/15 grid place-items-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange)" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Licensed &amp; Insured</div>
-                    <div className="text-sm font-bold">100% Satisfaction Guarantee</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="fade-up d4 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="tel:5125550000"
+            className="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] text-white font-bold text-base transition-colors shadow-lg"
+          >
+            <PhoneIcon />
+            (512) XXX-XXXX
+          </a>
+          <a
+            href="#quote"
+            className="inline-flex items-center px-7 py-4 rounded-full bg-white text-[var(--color-navy)] font-bold text-base hover:bg-white/90 transition-colors shadow-lg"
+          >
+            Get a Free Quote
+          </a>
+        </div>
+
+        {/* Trust strip */}
+        <div className="fade-up d4 mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-[11px] font-semibold tracking-[0.18em] uppercase text-white/75">
+          <span className="flex items-center gap-2"><Stars /> 4.9 / 5 · 200+ Reviews</span>
+          <span>· Licensed &amp; Insured</span>
+          <span>· Family Owned</span>
         </div>
       </div>
     </section>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function PhoneIcon() {
   return (
-    <div>
-      <div className="text-2xl font-extrabold text-white">{value}</div>
-      <div className="text-xs uppercase tracking-wider">{label}</div>
-    </div>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.86 19.86 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" />
+    </svg>
   );
 }
 
-function RoofIllustration() {
+function Stars() {
   return (
-    <svg viewBox="0 0 400 500" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
+    <span className="inline-flex items-center gap-0.5 text-[var(--color-orange)]">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+      ))}
+    </span>
+  );
+}
+
+/** Editorial roof scene — replace with a real photo at /public/hero.jpg */
+function RoofBackdrop() {
+  return (
+    <svg viewBox="0 0 1600 900" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#cfe0ee" />
-          <stop offset="100%" stopColor="#e3edf5" />
+        <linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3d5a7c" />
+          <stop offset="100%" stopColor="#5a7ea3" />
         </linearGradient>
-        <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1e3a5f" />
-          <stop offset="100%" stopColor="#15294a" />
+        <linearGradient id="hroof" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3a3530" />
+          <stop offset="100%" stopColor="#211e1b" />
         </linearGradient>
-        <pattern id="shingles" x="0" y="0" width="20" height="10" patternUnits="userSpaceOnUse">
-          <rect width="20" height="10" fill="url(#roof)" />
-          <path d="M0 10 L10 5 L20 10" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+        <pattern id="hshingles" x="0" y="0" width="40" height="20" patternUnits="userSpaceOnUse">
+          <rect width="40" height="20" fill="url(#hroof)" />
+          <path d="M0 20 L20 10 L40 20" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
         </pattern>
       </defs>
-      <rect width="400" height="500" fill="url(#sky)" />
-      {/* sun */}
-      <circle cx="320" cy="100" r="50" fill="#f4e7cc" opacity="0.7" />
-      <circle cx="320" cy="100" r="32" fill="#e08544" opacity="0.85" />
-      {/* house body */}
-      <rect x="60" y="280" width="280" height="180" fill="#ffffff" />
-      <rect x="60" y="280" width="280" height="180" fill="none" stroke="#1e3a5f" strokeWidth="2" />
-      {/* door */}
-      <rect x="180" y="360" width="40" height="100" fill="#1e3a5f" />
-      <circle cx="212" cy="412" r="2" fill="#e08544" />
-      {/* windows */}
-      <rect x="100" y="320" width="50" height="50" fill="#cfe0ee" stroke="#1e3a5f" strokeWidth="2" />
-      <rect x="250" y="320" width="50" height="50" fill="#cfe0ee" stroke="#1e3a5f" strokeWidth="2" />
-      {/* roof */}
-      <polygon points="40,280 200,160 360,280" fill="url(#shingles)" />
-      <polygon points="40,280 200,160 360,280" fill="none" stroke="#0f1f38" strokeWidth="2" />
-      {/* chimney */}
-      <rect x="270" y="190" width="22" height="50" fill="#15294a" />
-      {/* worker on roof */}
-      <g transform="translate(160 200) rotate(-25)">
-        <circle cx="0" cy="-10" r="8" fill="#ebd8b6" />
-        <rect x="-10" y="-2" width="20" height="22" rx="4" fill="#e08544" />
-        <rect x="-2" y="20" width="6" height="14" fill="#1e3a5f" />
-      </g>
-      {/* ground */}
-      <rect x="0" y="460" width="400" height="40" fill="#ebd8b6" />
+      <rect width="1600" height="900" fill="url(#hsky)" />
+      <circle cx="1380" cy="180" r="200" fill="#f3e3c8" opacity="0.35" />
+      <polygon points="0,900 0,540 1600,260 1600,900" fill="url(#hshingles)" />
     </svg>
   );
 }
