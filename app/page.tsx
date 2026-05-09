@@ -3,7 +3,6 @@ import ServicesBanners from "./components/ServicesBanners";
 import WhyUs from "./components/WhyUs";
 import RecentWork from "./components/RecentWork";
 import Reviews from "./components/Reviews";
-import BrandStatement from "./components/BrandStatement";
 import ContactBlock from "./components/ContactBlock";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
       <ServicesBanners />
       <RecentWork />
       <Reviews />
-      <BrandStatement />
       <ContactBlock />
     </>
   );

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { COLORS } from "../data/brand";
+import { ServiceIcon } from "./ServiceIcons";
 
 /**
  * Services section photo.
@@ -14,7 +15,7 @@ const SERVICES_PHOTO = "/servicespic.png";
 const services = [
   { name: "Roof Inspections", icon: "house" as const },
   { name: "Roof Repairs", icon: "shield" as const },
-  { name: "Roof Replacements", icon: "handshake" as const },
+  { name: "Roof Replacements", icon: "roof" as const },
 ];
 
 export default function ServicesBanners() {
@@ -86,7 +87,7 @@ export default function ServicesBanners() {
                     textAlign: "center",
                   }}
                 >
-                  <ServiceIcon kind={s.icon} />
+                  <ServiceIcon kind={s.icon} size={84} />
                   <p
                     style={{
                       fontFamily: "var(--font-body)",
@@ -171,42 +172,3 @@ function PhotoFrame({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function ServiceIcon({ kind }: { kind: "house" | "shield" | "handshake" }) {
-  const stroke = COLORS.fg;
-  const sw = 1.6;
-  return (
-    <svg
-      width={84}
-      height={84}
-      viewBox="0 0 64 64"
-      fill="none"
-      stroke={stroke}
-      strokeWidth={sw}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {kind === "house" && (
-        <>
-          <path d="M10 30 L32 12 L54 30" />
-          <path d="M16 28 L16 52 L48 52 L48 28" />
-          <rect x="28" y="36" width="8" height="16" />
-          <rect x="20" y="34" width="6" height="8" />
-          <rect x="38" y="34" width="6" height="8" />
-        </>
-      )}
-      {kind === "shield" && (
-        <>
-          <path d="M32 8 L52 16 L52 32 C52 44 42 52 32 56 C22 52 12 44 12 32 L12 16 Z" />
-          <path d="M22 32 L29 39 L42 26" />
-        </>
-      )}
-      {kind === "handshake" && (
-        <>
-          <path d="M6 32 L14 24 L22 30 L30 22 L38 30 L46 22 L58 32" />
-          <path d="M14 32 L22 40 L30 32 L38 40 L46 32" />
-          <path d="M32 28 C32 28 28 32 28 36 C28 40 32 42 32 42" />
-        </>
-      )}
-    </svg>
-  );
-}
