@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { COLORS, PROJECTS, type Project } from "../data/brand";
 
 function ProjectImage({ palette }: { palette: [string, string] }) {
@@ -74,8 +75,18 @@ function Card({ project, delay }: { project: Project; delay: number }) {
         if (img) img.style.transform = "scale(1)";
       }}
     >
-      <div style={{ aspectRatio: "4/5", overflow: "hidden", background: COLORS.soft2 }}>
-        <ProjectImage palette={project.palette} />
+      <div style={{ aspectRatio: "4/5", overflow: "hidden", background: COLORS.soft2, position: "relative" }}>
+        {project.photo ? (
+          <Image
+            src={project.photo}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        ) : (
+          <ProjectImage palette={project.palette} />
+        )}
       </div>
       <div style={{ padding: "20px 22px 22px" }}>
         <p
