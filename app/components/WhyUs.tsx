@@ -113,7 +113,7 @@ export default function WhyUs() {
                       letterSpacing: "-0.005em",
                     }}
                   >
-                    {s.name}
+                    {s.name.split(" ")[0]}<br />{s.name.split(" ").slice(1).join(" ")}
                   </p>
                 </div>
               ))}

@@ -3,8 +3,95 @@
 import { useState } from "react";
 import { BRAND, COLORS } from "../data/brand";
 
+const SERVICE_CATEGORIES = [
+  {
+    id: "inspection",
+    label: "Inspection & Assessment",
+    subs: [
+      "Routine roof inspections",
+      "Pre-purchase / real estate inspections",
+      "Insurance claim inspections",
+      "Drone or infrared moisture inspections",
+    ],
+  },
+  {
+    id: "repair",
+    label: "Repair Services",
+    subs: [
+      "Leak detection and repair",
+      "Shingle replacement",
+      "Flashing repair (chimneys, vents, skylights)",
+      "Soffit and fascia repair",
+      "Chimney repair and re-flashing",
+      "Skylight repair or replacement",
+      "Sagging roof repair",
+    ],
+  },
+  {
+    id: "replacement",
+    label: "Replacement & Installation",
+    subs: [
+      "Full roof replacement (tear-off and reroof)",
+      "Roof-overs (installing over existing roof)",
+      "New construction roofing",
+      "Asphalt shingle install",
+      "Metal roof install",
+      "Tile / slate / wood shake install",
+      "Flat / TPO / EPDM install",
+    ],
+  },
+  {
+    id: "storm",
+    label: "Storm & Emergency",
+    subs: [
+      "Hail damage repair",
+      "Wind damage repair",
+      "Tree impact repair",
+      "Emergency tarping",
+      "Insurance claim assistance",
+    ],
+  },
+  {
+    id: "maintenance",
+    label: "Maintenance & Cleaning",
+    subs: [
+      "Gutter cleaning, repair, and installation",
+      "Moss, algae, and lichen removal",
+      "Roof washing / soft washing",
+      "Debris removal",
+      "Annual maintenance plans",
+    ],
+  },
+  {
+    id: "weatherproofing",
+    label: "Weatherproofing & Efficiency",
+    subs: [
+      "Attic ventilation installation",
+      "Insulation upgrades",
+      "Ice dam prevention and removal",
+      "Waterproofing and sealing",
+      "Cool roof or reflective coatings",
+      "Solar panel installation or coordination",
+    ],
+  },
+  {
+    id: "specialty",
+    label: "Specialty & Commercial",
+    subs: [
+      "Flat / low-slope commercial roofing",
+      "Green / living roof installation",
+      "Snow removal",
+      "Roof coatings and restoration",
+      "Historic roof restoration",
+    ],
+  },
+];
+
 export default function ContactBlock() {
   const [submitted, setSubmitted] = useState(false);
+  const [category, setCategory] = useState("");
+  const [subService, setSubService] = useState("");
+  const selectedCat = SERVICE_CATEGORIES.find((c) => c.id === category);
 
   return (
     <section
@@ -112,8 +199,11 @@ export default function ContactBlock() {
               <Field label="Address" name="address" full />
               <div style={{ gridColumn: "1 / -1" }}>
                 <Label>Service Needed</Label>
+                {/* Category dropdown */}
                 <select
-                  name="service"
+                  name="service_category"
+                  value={category}
+                  onChange={(e) => { setCategory(e.target.value); setSubService(""); }}
                   style={{
                     width: "100%",
                     padding: "12px 14px",
@@ -122,15 +212,66 @@ export default function ContactBlock() {
                     borderRadius: 8,
                     fontFamily: "var(--font-body)",
                     fontSize: "0.92rem",
-                    color: COLORS.fg,
+                    color: category ? COLORS.fg : COLORS.fgMuted,
+                    marginBottom: selectedCat ? 14 : 0,
+                    cursor: "pointer",
                   }}
                 >
-                  <option>Roof Inspection</option>
-                  <option>Roof Repair</option>
-                  <option>Full Replacement</option>
-                  <option>Storm Damage</option>
-                  <option>Other</option>
+                  <option value="">Select a service category…</option>
+                  {SERVICE_CATEGORIES.map((cat) => (
+                    <option key={cat.id} value={cat.id}>{cat.label}</option>
+                  ))}
                 </select>
+
+                {/* Sub-options */}
+                {selectedCat && (
+                  <div
+                    style={{
+                      padding: "14px 16px",
+                      background: COLORS.bg,
+                      border: `1px solid ${COLORS.border}`,
+                      borderRadius: 10,
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.58rem",
+                        letterSpacing: "0.28em",
+                        textTransform: "uppercase",
+                        color: COLORS.fgMuted,
+                        marginBottom: 10,
+                      }}
+                    >
+                      Specify
+                    </p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {selectedCat.subs.map((sub) => (
+                        <button
+                          key={sub}
+                          type="button"
+                          onClick={() => setSubService(sub)}
+                          style={{
+                            padding: "6px 12px",
+                            borderRadius: 999,
+                            border: `1px solid ${subService === sub ? COLORS.accent : COLORS.border}`,
+                            background: subService === sub ? `${COLORS.accent}1a` : "transparent",
+                            color: subService === sub ? COLORS.accent : COLORS.fgMuted,
+                            fontFamily: "var(--font-body)",
+                            fontSize: "0.75rem",
+                            fontWeight: subService === sub ? 700 : 400,
+                            cursor: "pointer",
+                            transition: "all 0.2s ease",
+                          }}
+                        >
+                          {sub}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <input type="hidden" name="service_detail" value={subService} />
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 <Label>Anything else?</Label>

@@ -284,11 +284,11 @@ export default function Nav() {
             <a
               href="#contact"
               style={{
-                fontSize: condensed ? "0.7rem" : "0.92rem",
+                fontSize: isMobile ? "0.55rem" : condensed ? "0.7rem" : "0.92rem",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                padding: condensed ? "9px 16px" : "14px 26px",
+                padding: isMobile ? "6px 10px" : condensed ? "9px 16px" : "14px 26px",
                 background: COLORS.accent,
                 color: COLORS.white,
                 borderRadius: 999,

@@ -75,12 +75,26 @@ export function RoofIcon({ size = defaults.size, color, strokeWidth = defaults.s
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      {/* Peaked roof */}
-      <path d="M4 38 L32 14 L60 38" />
-      {/* Eave */}
-      <path d="M2 40 L62 40" />
-      {/* Chimney */}
-      <path d="M46 30 L46 22 L52 22 L52 30" />
+      {/* Outer roof silhouette */}
+      <path d="M4 54 L32 10 L60 54" strokeWidth={strokeWidth * 1.3} />
+
+      {/* Left half — shingle columns parallel to left slope */}
+      <line x1="10" y1="54" x2="32" y2="19" />
+      <line x1="16" y1="54" x2="32" y2="28" />
+      <line x1="22" y1="54" x2="32" y2="37" />
+      <line x1="27" y1="54" x2="32" y2="45" />
+
+      {/* Left eave — scalloped arcs between each column */}
+      <path d="M4 54 Q7 58 10 54" />
+      <path d="M10 54 Q13 58 16 54" />
+      <path d="M16 54 Q19 58 22 54" />
+      <path d="M22 54 Q24.5 58 27 54" />
+      <path d="M27 54 Q29.5 58 32 54" />
+
+      {/* Right half — nested V-shapes parallel to right slope */}
+      <line x1="32" y1="21" x2="54" y2="54" />
+      <line x1="32" y1="31" x2="47" y2="54" />
+      <line x1="32" y1="39" x2="42" y2="54" />
     </svg>
   );
 }

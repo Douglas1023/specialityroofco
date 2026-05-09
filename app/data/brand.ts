@@ -80,15 +80,16 @@ export interface Project {
   type: string;
   location: string;
   palette: [string, string];
+  photo?: string;
 }
 
 export const PROJECTS: Project[] = [
-  { id: "p1", title: "Hill Country Residence", type: "Full Replacement", location: "Cedar Park", palette: ["#3a2c22", "#211710"] },
-  { id: "p2", title: "Lakeside Storm Repair", type: "Storm Damage", location: "Westlake", palette: ["#2c3543", "#1a2029"] },
-  { id: "p3", title: "South Austin Reroof", type: "Full Replacement", location: "78704", palette: ["#4a3528", "#2c1f17"] },
-  { id: "p4", title: "Round Rock Inspection", type: "Inspection", location: "Round Rock", palette: ["#3d2a1e", "#241710"] },
-  { id: "p5", title: "Modern Standing Seam", type: "Metal Roof", location: "Bouldin Creek", palette: ["#28323e", "#161e28"] },
-  { id: "p6", title: "Eastside Leak Repair", type: "Repair", location: "East Austin", palette: ["#5a3d2a", "#352010"] },
+  { id: "p1", title: "Hill Country Residence", type: "Full Replacement", location: "Cedar Park", palette: ["#3a2c22", "#211710"], photo: "/cedarpark.png" },
+  { id: "p2", title: "Lakeside Storm Repair", type: "Storm Damage", location: "Westlake", palette: ["#2c3543", "#1a2029"], photo: "/westlake.webp" },
+  { id: "p3", title: "South Austin Reroof", type: "Full Replacement", location: "78704", palette: ["#4a3528", "#2c1f17"], photo: "/southaustin.avif" },
+  { id: "p4", title: "Round Rock Inspection", type: "Inspection", location: "Round Rock", palette: ["#3d2a1e", "#241710"], photo: "/roundrock.webp" },
+  { id: "p5", title: "Modern Standing Seam", type: "Metal Roof", location: "Bouldin Creek", palette: ["#28323e", "#161e28"], photo: "/modern.avif" },
+  { id: "p6", title: "Eastside Leak Repair", type: "Repair", location: "East Austin", palette: ["#5a3d2a", "#352010"], photo: "/eastaustin.webp" },
 ];
 
 export interface Review {
