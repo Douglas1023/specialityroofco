@@ -73,7 +73,7 @@ export default function Hero() {
             fontFamily: "var(--font-mono)",
             fontSize: "0.78rem",
             fontWeight: 400,
-            color: COLORS.accent,
+            color: COLORS.white,
             letterSpacing: "0.32em",
             textTransform: "uppercase",
             marginBottom: 22,
@@ -95,9 +95,7 @@ export default function Hero() {
             textShadow: "0 2px 30px rgba(0,0,0,0.35)",
           }}
         >
-          A roof done <em style={{ color: COLORS.accent, fontStyle: "italic" }}>right</em>
-          <br />
-          the first time.
+          A roof done <em style={{ color: COLORS.accent, fontStyle: "italic" }}>right</em>.
         </h1>
 
         <div
@@ -136,13 +134,12 @@ export default function Hero() {
         >
           <a
             href="#contact"
+            className="hero-cta hero-cta-primary"
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "0.72rem",
               fontWeight: 700,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              padding: "16px 38px",
               background: COLORS.accent,
               color: COLORS.white,
               borderRadius: 999,
@@ -161,13 +158,12 @@ export default function Hero() {
           </a>
           <a
             href={BRAND.phoneHref}
+            className="hero-cta hero-cta-outline"
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "0.72rem",
               fontWeight: 600,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              padding: "16px 38px",
               background: "transparent",
               color: COLORS.white,
               border: `1px solid ${COLORS.white}66`,
@@ -187,6 +183,20 @@ export default function Hero() {
             Call {BRAND.phone}
           </a>
         </div>
+
+        <style>{`
+          .hero-cta {
+            font-size: 0.72rem;
+            padding: 16px 38px;
+          }
+          @media (max-width: 640px) {
+            .hero-cta {
+              font-size: 0.6rem;
+              padding: 9px 18px;
+              letter-spacing: 0.18em;
+            }
+          }
+        `}</style>
 
         {/* Trust strip */}
         <div

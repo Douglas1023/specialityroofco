@@ -36,7 +36,6 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on outside click
   useEffect(() => {
     if (!menuOpen) return;
     const handleClick = (e: MouseEvent) => {
@@ -81,7 +80,7 @@ export default function Nav() {
         style={{
           width: condensed ? (isMobile ? "100%" : "min(58vw, 720px)") : "100%",
           minWidth: condensed ? 280 : "auto",
-          transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+          transition: "width 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       >
         <nav
@@ -89,14 +88,13 @@ export default function Nav() {
             position: "relative",
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
             height: condensed ? 56 : 86,
             padding: condensed ? "0 16px" : "0 clamp(20px, 4vw, 56px)",
             background: condensed
-              ? "linear-gradient(180deg, rgba(220,233,242,0.95) 0%, rgba(192,213,229,0.95) 100%)"
+              ? "linear-gradient(180deg, rgba(220,233,242,0.45) 0%, rgba(192,213,229,0.45) 100%)"
               : "transparent",
-            backdropFilter: condensed ? "blur(16px)" : "none",
-            WebkitBackdropFilter: condensed ? "blur(16px)" : "none",
+            backdropFilter: condensed ? "blur(20px) saturate(140%)" : "none",
+            WebkitBackdropFilter: condensed ? "blur(20px) saturate(140%)" : "none",
             border: condensed
               ? `1px solid ${COLORS.fg}1a`
               : "1px solid transparent",
@@ -104,23 +102,19 @@ export default function Nav() {
             boxShadow: condensed
               ? "0 10px 30px rgba(20,40,75,0.10)"
               : "none",
-            maxWidth: condensed ? "none" : 1440,
-            margin: "0 auto",
             transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-            gap: 16,
           }}
         >
-          {/* LEFT — links (full) / hamburger (condensed) */}
+          {/* LEFT — flex:1 always; only opacity/width inside transition */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              flex: condensed ? "0 0 auto" : 1,
+              flex: 1,
               minWidth: 0,
-              transition: "flex 0.6s ease",
             }}
           >
-            {/* Hamburger — visible when condensed */}
+            {/* Hamburger */}
             <button
               type="button"
               aria-label="Toggle menu"
@@ -136,7 +130,9 @@ export default function Nav() {
                 opacity: condensed ? 1 : 0,
                 pointerEvents: condensed ? "auto" : "none",
                 overflow: "hidden",
-                transition: "opacity 0.4s ease, width 0.4s ease",
+                flexShrink: 0,
+                transition:
+                  "opacity 0.4s ease, width 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               <span
@@ -146,9 +142,9 @@ export default function Nav() {
                   height: 1.5,
                   background: COLORS.fg,
                   borderRadius: 1,
-                  transition: "all 0.3s",
+                  transition: "all 0.3s ease",
                   transform: menuOpen
-                    ? "translateY(3.25px) rotate(45deg)"
+                    ? "translateY(6.5px) rotate(45deg)"
                     : "none",
                 }}
               />
@@ -159,7 +155,7 @@ export default function Nav() {
                   height: 1.5,
                   background: COLORS.fg,
                   borderRadius: 1,
-                  transition: "all 0.3s",
+                  transition: "all 0.3s ease",
                   opacity: menuOpen ? 0 : 1,
                 }}
               />
@@ -170,27 +166,27 @@ export default function Nav() {
                   height: 1.5,
                   background: COLORS.fg,
                   borderRadius: 1,
-                  transition: "all 0.3s",
+                  transition: "all 0.3s ease",
                   transform: menuOpen
-                    ? "translateY(-3.25px) rotate(-45deg)"
+                    ? "translateY(-6.5px) rotate(-45deg)"
                     : "none",
                 }}
               />
             </button>
 
-            {/* Left link group — fades out when condensed */}
+            {/* Left links — opacity only, no layout changes */}
             <ul
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
                 listStyle: "none",
-                width: condensed ? 0 : "100%",
-                paddingRight: condensed ? 0 : 110,
+                flex: 1,
+                margin: 0,
+                paddingRight: 110,
                 opacity: condensed ? 0 : 1,
                 pointerEvents: condensed ? "none" : "auto",
-                overflow: "hidden",
-                transition: "opacity 0.3s ease, width 0.5s ease",
+                transition: "opacity 0.35s ease",
               }}
             >
               {leftLinks.map((item) => (
@@ -212,7 +208,7 @@ export default function Nav() {
             </ul>
           </div>
 
-          {/* CENTER — logo */}
+          {/* CENTER — logo, absolute */}
           <Link
             href="/"
             aria-label="Specialty Roofing home"
@@ -240,29 +236,30 @@ export default function Nav() {
             />
           </Link>
 
-          {/* RIGHT — Reviews + Contact distribute like the left, pill pinned right */}
+          {/* RIGHT — flex:1 always; pill anchored to right edge */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              flex: condensed ? "0 0 auto" : 1,
+              flex: 1,
               minWidth: 0,
-              paddingLeft: condensed ? 0 : 110,
-              transition: "flex 0.6s ease, padding 0.4s ease",
+              paddingLeft: 110,
+              justifyContent: "flex-end",
             }}
           >
+            {/* Right links — opacity only, no layout changes */}
             <ul
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
                 listStyle: "none",
-                flex: condensed ? "0 0 auto" : 1,
-                width: condensed ? 0 : "auto",
+                flex: 1,
+                margin: 0,
+                padding: 0,
                 opacity: condensed ? 0 : 1,
                 pointerEvents: condensed ? "none" : "auto",
-                overflow: "hidden",
-                transition: "opacity 0.3s ease, flex 0.5s ease, width 0.5s ease",
+                transition: "opacity 0.35s ease",
               }}
             >
               {rightLinks.map((item) => (
@@ -282,6 +279,8 @@ export default function Nav() {
                 </li>
               ))}
             </ul>
+
+            {/* Roof Quote — always in DOM, transitions size only */}
             <a
               href="#contact"
               style={{
@@ -293,10 +292,10 @@ export default function Nav() {
                 background: COLORS.accent,
                 color: COLORS.white,
                 borderRadius: 999,
-                transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                transition: "font-size 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease",
                 whiteSpace: "nowrap",
                 display: "inline-block",
-                marginLeft: condensed ? 0 : 24,
+                marginLeft: 12,
                 flexShrink: 0,
               }}
               onMouseEnter={(e) => {

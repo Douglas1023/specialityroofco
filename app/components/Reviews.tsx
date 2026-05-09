@@ -20,7 +20,7 @@ export default function Reviews() {
       id="reviews"
       style={{
         padding: "120px clamp(16px, 3vw, 48px)",
-        background: COLORS.bg,
+        background: "linear-gradient(180deg, #DCE9F2 0%, #C0D5E5 100%)",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
