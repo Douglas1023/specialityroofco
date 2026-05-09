@@ -51,7 +51,7 @@ export default function Nav() {
 
   const linkStyle: React.CSSProperties = {
     fontSize: "0.98rem",
-    fontWeight: 600,
+    fontWeight: 900,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
     color: COLORS.fg,
