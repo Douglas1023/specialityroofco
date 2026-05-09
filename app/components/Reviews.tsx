@@ -81,7 +81,7 @@ export default function Reviews() {
               className={`fade-up d${i + 1}`}
               style={{
                 padding: "32px 28px",
-                background: COLORS.bgAlt,
+                background: COLORS.bg,
                 border: `1px solid ${COLORS.border}`,
                 borderRadius: 16,
                 display: "flex",

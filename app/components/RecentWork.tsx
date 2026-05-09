@@ -134,7 +134,7 @@ export default function RecentWork() {
       id="projects"
       style={{
         padding: "120px clamp(16px, 3vw, 48px)",
-        background: COLORS.bgAlt,
+        background: COLORS.bg,
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
