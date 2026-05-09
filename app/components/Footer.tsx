@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: COLORS.bg,
+        background: "linear-gradient(180deg, #DCE9F2 0%, #C0D5E5 100%)",
         color: COLORS.fg,
         padding: "72px clamp(16px, 3vw, 48px) 36px",
         borderTop: `1px solid ${COLORS.border}`,
