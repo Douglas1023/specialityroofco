@@ -107,5 +107,13 @@ export function ServiceIcon({
 }: { kind: "house" | "shield" | "roof" } & Props) {
   if (kind === "house") return <HouseIcon size={size} color={color} strokeWidth={strokeWidth} />;
   if (kind === "shield") return <ShieldCheckIcon size={size} color={color} strokeWidth={strokeWidth} />;
-  return <RoofIcon size={size} color={color} strokeWidth={strokeWidth} />;
+  return (
+    <img
+      src="/icon-roof-replacement.png"
+      alt="Roof Replacements"
+      width={size ?? defaults.size}
+      height={size ?? defaults.size}
+      style={{ objectFit: "contain" }}
+    />
+  );
 }
