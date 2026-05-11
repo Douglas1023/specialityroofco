@@ -105,15 +105,31 @@ export function ServiceIcon({
   color,
   strokeWidth,
 }: { kind: "house" | "shield" | "roof" } & Props) {
-  if (kind === "house") return <HouseIcon size={size} color={color} strokeWidth={strokeWidth} />;
-  if (kind === "shield") return <ShieldCheckIcon size={size} color={color} strokeWidth={strokeWidth} />;
+  if (kind === "house") return (
+    <img
+      src="/icon-roof-inspection.png"
+      alt="Roof Inspections"
+      width={size ?? defaults.size}
+      height={size ?? defaults.size}
+      style={{ objectFit: "contain" }}
+    />
+  );
+  if (kind === "shield") return (
+    <img
+      src="/icon-roof-repair.png"
+      alt="Roof Repairs"
+      width={size ?? defaults.size}
+      height={size ?? defaults.size}
+      style={{ objectFit: "contain" }}
+    />
+  );
   return (
     <img
       src="/icon-roof-replacement.png"
       alt="Roof Replacements"
       width={size ?? defaults.size}
       height={size ?? defaults.size}
-      style={{ objectFit: "contain" }}
+      style={{ objectFit: "contain", marginTop: 10 }}
     />
   );
 }
