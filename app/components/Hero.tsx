@@ -19,7 +19,7 @@ export default function Hero() {
     >
       {/* Background photo */}
       <Image
-        src="/hero-roof.jpg"
+        src="/hero-roof-new.png"
         alt="Specialty Roofing crew installing shingles"
         fill
         priority
