@@ -23,7 +23,7 @@ export default async function OGImage() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} width={480} alt="Specialty Roofing" />
+        <img src={logoSrc} width={960} alt="Specialty Roofing" />
       </div>
     ),
     { width: 1200, height: 630 }
